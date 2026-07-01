@@ -1,0 +1,406 @@
+{
+  "company_name": "Klaviyo",
+  "events": [
+    {
+      "event_id": "klaviyo_001",
+      "timestamp": 1782867903.06705,
+      "event_type": "search",
+      "detail": {
+        "query": "Klaviyo company overview martech 2024",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "klaviyo_002",
+      "timestamp": 1782867904.797228,
+      "event_type": "search",
+      "detail": {
+        "query": "Klaviyo funding history valuation",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "klaviyo_003",
+      "timestamp": 1782867905.821354,
+      "event_type": "search",
+      "detail": {
+        "query": "Klaviyo revenue growth metrics 2024",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "klaviyo_004",
+      "timestamp": 1782867911.138784,
+      "event_type": "search",
+      "detail": {
+        "query": "Klaviyo customer count 2024 2025",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "klaviyo_005",
+      "timestamp": 1782867912.057697,
+      "event_type": "search",
+      "detail": {
+        "query": "Klaviyo competition risks Mailchimp Salesforce Attentive",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "klaviyo_006",
+      "timestamp": 1782867912.1077912,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://investors.klaviyo.com/news/news-details/2025/Klaviyo-Announces-Fourth-Quarter-and-Fiscal-Year-2024-Financial-Results/default.aspx",
+        "success": true
+      }
+    },
+    {
+      "event_id": "klaviyo_007",
+      "timestamp": 1782867914.965413,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://stockanalysis.com/stocks/kvyo/revenue",
+        "success": true
+      }
+    },
+    {
+      "event_id": "klaviyo_008",
+      "timestamp": 1782867916.9840362,
+      "event_type": "search",
+      "detail": {
+        "query": "Klaviyo Shopify dependency risk concentration 2024",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "klaviyo_009",
+      "timestamp": 1782867921.694317,
+      "event_type": "search",
+      "detail": {
+        "query": "Klaviyo AI product launch 2024 2025 expansion",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "klaviyo_010",
+      "timestamp": 1782867922.7174988,
+      "event_type": "search",
+      "detail": {
+        "query": "Klaviyo net revenue retention rate operating margin 2024",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "klaviyo_011",
+      "timestamp": 1782867924.946949,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://sacra.com/c/klaviyo",
+        "success": true
+      }
+    },
+    {
+      "event_id": "klaviyo_012",
+      "timestamp": 1782867936.763953,
+      "event_type": "claim",
+      "detail": {
+        "section": "overview",
+        "text": "Klaviyo (NYSE: KVYO), founded in 2012 and headquartered in Boston, is a B2C CRM and marketing automation platform offering email, SMS, WhatsApp, push notifications, and an integrated CDP, primarily serving e-commerce and direct-to-consumer brands.",
+        "confidence": "high",
+        "source_name": "Klaviyo company website / investor relations",
+        "source_url": "https://www.klaviyo.com/about",
+        "reasoning": "Confirmed directly on Klaviyo's own website and official investor press releases."
+      }
+    },
+    {
+      "event_id": "klaviyo_013",
+      "timestamp": 1782867936.763985,
+      "event_type": "claim",
+      "detail": {
+        "section": "overview",
+        "text": "Klaviyo went public on the NYSE (ticker: KVYO) on September 20, 2023, at an IPO price of $30 per share, closing its first trading day at $32.76 for an implied valuation of approximately $9.2 billion.",
+        "confidence": "high",
+        "source_name": "Equitybee / public filings",
+        "source_url": "https://equitybee.com/klaviyo-case-study",
+        "reasoning": "IPO price and first-day close are publicly recorded events corroborated by multiple secondary sources."
+      }
+    },
+    {
+      "event_id": "klaviyo_014",
+      "timestamp": 1782867936.763998,
+      "event_type": "claim",
+      "detail": {
+        "section": "overview",
+        "text": "Klaviyo's revenue model is usage-based, with tiered pricing driven by email and SMS contact volume, starting at a free tier (up to 250 contacts) and scaling to enterprise custom pricing; it averages approximately $5,400 in annual revenue per paying customer.",
+        "confidence": "medium",
+        "source_name": "Sacra",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "Sacra is a reputable secondary research source; the average revenue per customer figure is an estimate, not directly from Klaviyo IR."
+      }
+    },
+    {
+      "event_id": "klaviyo_015",
+      "timestamp": 1782867957.080493,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "Klaviyo generated $937M in total revenue in FY2024, representing 34% year-over-year growth, and grew to $1.23B in FY2025 revenue, representing 31.6% growth.",
+        "confidence": "high",
+        "source_name": "StockAnalysis / S&P Global Market Intelligence",
+        "source_url": "https://stockanalysis.com/stocks/kvyo/revenue",
+        "reasoning": "Revenue figures are sourced from S&P Global Market Intelligence and updated post-earnings; corroborated by Klaviyo's own investor press releases."
+      }
+    },
+    {
+      "event_id": "klaviyo_016",
+      "timestamp": 1782867957.080531,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "Klaviyo's customer base grew to 167,000+ as of end-2024 and expanded further to 183,000+ as of Q3 2025, a roughly 17% year-over-year increase.",
+        "confidence": "high",
+        "source_name": "Sacra / Klaviyo Investor Relations",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "Sacra cites Klaviyo Investor Relations directly for the 167K end-2024 figure and Q3 2025 figure; corroborated by secondary blog sources."
+      }
+    },
+    {
+      "event_id": "klaviyo_017",
+      "timestamp": 1782867957.080549,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "Klaviyo's upmarket cohort\u2014customers generating over $50K ARR\u2014numbered 3,563 as of Q3 2025, up 36% year-over-year, indicating successful movement into mid-market and enterprise segments.",
+        "confidence": "high",
+        "source_name": "Sacra",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "Sacra attributes this figure to Klaviyo investor relations disclosures; the 36% YoY growth is consistent with other reported metrics."
+      }
+    },
+    {
+      "event_id": "klaviyo_018",
+      "timestamp": 1782867957.0805619,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "In 2025, Klaviyo launched its \"Marketing Agent\" and \"Customer Agent\" AI products, repositioning the platform as an \"AI-first B2C CRM\" encompassing marketing automation, customer service, analytics, and multi-channel messaging (email, SMS, WhatsApp, RCS).",
+        "confidence": "high",
+        "source_name": "Klaviyo Investor Relations press release",
+        "source_url": "https://investors.klaviyo.com/news/news-details/2025/Klaviyo-Advances-AI-first-B2C-CRM-with-the-Launch-of-Marketing-Agent-and-Customer-Agent/default.aspx",
+        "reasoning": "Primary source: official Klaviyo investor relations press release announcing the product launches."
+      }
+    },
+    {
+      "event_id": "klaviyo_019",
+      "timestamp": 1782867957.0805728,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "International revenue (EMEA + APAC combined) grew 43% year-over-year in Q3 2025, with Klaviyo opening a Dublin office in 2024 to support international expansion.",
+        "confidence": "medium",
+        "source_name": "Sacra",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "Sacra aggregates from earnings disclosures; international growth rate cited is consistent with management commentary but sourced via secondary aggregator."
+      }
+    },
+    {
+      "event_id": "klaviyo_020",
+      "timestamp": 1782867957.0805829,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "The SMS product is gaining traction as a cross-sell, with 18.2% of customers having SMS attached as of December 31, 2024, up from 16.0% the prior year.",
+        "confidence": "high",
+        "source_name": "Sacra / Klaviyo Investor Relations",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "Sacra attributes this to Klaviyo's December 31, 2024 investor disclosures, a primary data point."
+      }
+    },
+    {
+      "event_id": "klaviyo_021",
+      "timestamp": 1782867976.273073,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Klaviyo's dollar-based net revenue retention (NRR) was 112% as of Q2 2024 (down from 119% a year prior), and has since moderated to 109% as of Q3 2025\u2014still above 100%, indicating net expansion within existing customers, but on a declining trend.",
+        "confidence": "high",
+        "source_name": "Klaviyo Investor Relations / Sacra",
+        "source_url": "https://quartr.com/events/klaviyo-inc-kvyo-q2-2024_FG8JS3kD",
+        "reasoning": "NRR figures are reported by Klaviyo in quarterly earnings filings; the Q2 2024 figure is sourced from a reputable earnings aggregator citing the official release."
+      }
+    },
+    {
+      "event_id": "klaviyo_022",
+      "timestamp": 1782867976.273099,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Klaviyo achieved non-GAAP operating income of $112.5M in FY2024, representing a 12% non-GAAP operating margin, expanding to approximately 14% by Q3 2025.",
+        "confidence": "high",
+        "source_name": "Sacra / Klaviyo Investor Relations",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "Sacra directly cites Klaviyo's investor filings for these operating income and margin figures."
+      }
+    },
+    {
+      "event_id": "klaviyo_023",
+      "timestamp": 1782867976.27311,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Klaviyo generated $148.7M in free cash flow in FY2024, with a free cash flow margin of approximately 14\u201317% during 2024 quarters.",
+        "confidence": "high",
+        "source_name": "Sacra / Klaviyo Investor Relations (Q2 2024 press release)",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "Full-year FCF figure attributed to Klaviyo IR disclosures via Sacra; Q2 FCF margin corroborated by official Q2 press release."
+      }
+    },
+    {
+      "event_id": "klaviyo_024",
+      "timestamp": 1782867976.273119,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Klaviyo's market capitalization was approximately $10.7 billion as of December 2024, implying a forward revenue multiple of roughly 11\u201312x on 2024 revenue of ~$937M.",
+        "confidence": "medium",
+        "source_name": "Sacra",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "Market cap and revenue multiple are point-in-time estimates from Sacra; market cap fluctuates daily and is inherently approximate."
+      }
+    },
+    {
+      "event_id": "klaviyo_025",
+      "timestamp": 1782867976.273126,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Revenue is forecast to grow approximately 16% per annum on average over the next three years per analyst consensus, ahead of the broader US software industry forecast of ~12% annual growth.",
+        "confidence": "medium",
+        "source_name": "Yahoo Finance / analyst consensus",
+        "source_url": "https://finance.yahoo.com/news/klaviyo-full-2024-earnings-beats-104943532.html",
+        "reasoning": "Forward growth forecasts are consensus analyst estimates and inherently subject to revision; sourced from a reputable secondary outlet."
+      }
+    },
+    {
+      "event_id": "klaviyo_026",
+      "timestamp": 1782867996.715067,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "Klaviyo has significant customer concentration risk via Shopify: approximately 77.7% of its ARR as of December 31, 2024 came from customers who also use Shopify, creating a strong dependency on Shopify's ecosystem health and any changes in that partnership.",
+        "confidence": "medium",
+        "source_name": "Sacra (citing Klaviyo disclosures)",
+        "source_url": "https://sacra.com/chat/h/f9788fd7-5bca-4768-8ab4-430870252c33",
+        "reasoning": "The 77.7% figure is attributed to Klaviyo's own disclosures via Sacra; the dependency is widely cited across multiple sources including SaaStr, but sourced here through a secondary aggregator."
+      }
+    },
+    {
+      "event_id": "klaviyo_027",
+      "timestamp": 1782867996.715104,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "Klaviyo faces competitive pressure from multiple martech players: Mailchimp (Intuit) at the SMB end, Salesforce Marketing Cloud and HubSpot at the enterprise end, and Attentive specifically in SMS marketing\u2014with all major players also investing heavily in AI capabilities.",
+        "confidence": "medium",
+        "source_name": "Multiple industry comparison sources (Subscribfy, Zigpoll, Attentive)",
+        "source_url": "https://subscribfy.ai/blogs/klaviyo-vs.-mailchimp-vs.-attentive-best-email-platform-for-shopify-in-2026",
+        "reasoning": "Competitive landscape is well-documented in industry commentary; specific competitive dynamics inferred from multiple secondary sources rather than a single primary report."
+      }
+    },
+    {
+      "event_id": "klaviyo_028",
+      "timestamp": 1782867996.7151208,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "Klaviyo's net revenue retention has declined from 119% (Q2 2023) to 109% (Q3 2025), suggesting that while existing customers still expand, the pace of upsell and/or cross-sell within accounts is moderating.",
+        "confidence": "high",
+        "source_name": "Klaviyo Investor Relations / Sacra",
+        "source_url": "https://sacra.com/c/klaviyo",
+        "reasoning": "NRR figures are reported in Klaviyo's quarterly earnings releases; the trend across multiple quarters is clearly documented."
+      }
+    },
+    {
+      "event_id": "klaviyo_029",
+      "timestamp": 1782867996.715133,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "Klaviyo's revenue growth rate has decelerated from 63% in FY2022 to 47% in FY2023 to 34% in FY2024 and approximately 32% in Q3 2025, a natural consequence of scale but a potential concern if deceleration continues toward the ~16% analyst consensus longer-term forecast.",
+        "confidence": "high",
+        "source_name": "StockAnalysis / S&P Global Market Intelligence",
+        "source_url": "https://stockanalysis.com/stocks/kvyo/revenue",
+        "reasoning": "Annual revenue figures and growth rates are directly sourced from S&P Global Market Intelligence data as displayed on StockAnalysis."
+      }
+    },
+    {
+      "event_id": "klaviyo_030",
+      "timestamp": 1782867996.715144,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "As a publicly traded company (IPO September 2023), Klaviyo is no longer a private growth equity target; any investment thesis must account for public market liquidity, quarterly earnings scrutiny, and the $10.7B market cap entry point.",
+        "confidence": "high",
+        "source_name": "Klaviyo Investor Relations / NYSE",
+        "source_url": "https://investors.klaviyo.com/overview/default.aspx",
+        "reasoning": "The company's public listing is a primary fact verifiable from exchange records and Klaviyo's own investor relations page."
+      }
+    },
+    {
+      "event_id": "klaviyo_031",
+      "timestamp": 1782868005.535202,
+      "event_type": "claim",
+      "detail": {
+        "section": "recommendation",
+        "text": "Klaviyo is a publicly traded company (NYSE: KVYO) with a ~$10.7B market cap, making it unsuitable for a typical growth equity sourcing memo in terms of a direct investment; however, it is a strong public comps benchmark for private martech and e-commerce CRM investments, and its competitive posture informs thematic diligence in the sector.",
+        "confidence": "high",
+        "source_name": "Klaviyo Investor Relations",
+        "source_url": "https://investors.klaviyo.com/overview/default.aspx",
+        "reasoning": "The public listing and market cap are verifiable primary facts that directly inform the investment context."
+      }
+    },
+    {
+      "event_id": "klaviyo_032",
+      "timestamp": 1782868005.535239,
+      "event_type": "claim",
+      "detail": {
+        "section": "recommendation",
+        "text": "For thematic purposes, Klaviyo validates strong demand for vertical-specific, data-integrated marketing platforms at scale; private analogues competing in adjacent verticals (non-ecommerce B2C CRM, or regional/sector-specific marketing automation) could represent attractive growth equity opportunities informed by Klaviyo's trajectory.",
+        "confidence": "low",
+        "source_name": "Analyst inference",
+        "source_url": "",
+        "reasoning": "This is a strategic inference from the research, not a claim sourced to any specific document; marked low accordingly."
+      }
+    }
+  ],
+  "diagnosis": {
+    "status": "strong",
+    "total_claims": 21,
+    "confidence_distribution": {
+      "high": 14,
+      "medium": 6,
+      "low": 1,
+      "unverified": 0
+    },
+    "section_coverage": {
+      "overview": 3,
+      "growth_signals": 6,
+      "metrics": 5,
+      "risks": 5,
+      "recommendation": 2
+    },
+    "missing_sections": [],
+    "weak_claims": [
+      {
+        "section": "recommendation",
+        "text": "For thematic purposes, Klaviyo validates strong demand for vertical-specific, data-integrated marketing platforms at scale; private analogues competing in adjacent verticals (non-ecommerce B2C CRM, or regional/sector-specific marketing automation) could represent attractive growth equity opportunities informed by Klaviyo's trajectory.",
+        "confidence": "low",
+        "source_name": "Analyst inference",
+        "source_url": "",
+        "reasoning": "This is a strategic inference from the research, not a claim sourced to any specific document; marked low accordingly."
+      }
+    ],
+    "recommendation": "Majority of claims are backed by primary sources. Memo is ready for internal review."
+  }
+}

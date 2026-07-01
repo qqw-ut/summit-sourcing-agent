@@ -1,0 +1,117 @@
+{
+  "company_name": "Keeper Security",
+  "events": [
+    {
+      "event_id": "keeper_security_001",
+      "timestamp": 1782875469.299662,
+      "event_type": "search",
+      "detail": {
+        "query": "Keeper Security company overview 2024",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "keeper_security_002",
+      "timestamp": 1782875470.80969,
+      "event_type": "search",
+      "detail": {
+        "query": "Keeper Security funding revenue growth",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "keeper_security_003",
+      "timestamp": 1782875470.838636,
+      "event_type": "search",
+      "detail": {
+        "query": "Keeper Security competitors market position",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "keeper_security_004",
+      "timestamp": 1782875476.030276,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://www.prnewswire.com/news-releases/keeper-security-retrospective-reflecting-on-a-groundbreaking-year-in-2024-302335766.html",
+        "success": true
+      }
+    },
+    {
+      "event_id": "keeper_security_005",
+      "timestamp": 1782875476.075406,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://www.prnewswire.com/news-releases/gartner-names-keeper-security-the-second-fastest-growing-company-in-the-market-share-analysis-security-software-worldwide-2025-302784183.html",
+        "success": true
+      }
+    },
+    {
+      "event_id": "keeper_security_006",
+      "timestamp": 1782875477.021506,
+      "event_type": "search",
+      "detail": {
+        "query": "Keeper Security Summit Partners 2023 funding round details",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "keeper_security_007",
+      "timestamp": 1782875477.742482,
+      "event_type": "search",
+      "detail": {
+        "query": "Keeper Security KeeperPAM product launch customers 2024",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "keeper_security_008",
+      "timestamp": 1782875481.675012,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://regtechanalyst.com/summit-partners-invests-in-keeper-security-fuels-expansion-in-cybersecurity-solutions",
+        "success": true
+      }
+    },
+    {
+      "event_id": "keeper_security_009",
+      "timestamp": 1782875482.659889,
+      "event_type": "search",
+      "detail": {
+        "query": "Keeper Security employee count headcount 2024",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "keeper_security_010",
+      "timestamp": 1782875483.576759,
+      "event_type": "search",
+      "detail": {
+        "query": "Keeper Security risks challenges competition CyberArk 1Password",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "keeper_security_011",
+      "timestamp": 1782875487.219104,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://www.summitpartners.com/resources/keeper-security-long-term-growth-strategy",
+        "success": true
+      }
+    },
+    {
+      "event_id": "keeper_security_012",
+      "timestamp": 1782875488.081832,
+      "event_type": "search",
+      "detail": {
+        "query": "Keeper Security Gartner second fastest growing security software 53% revenue growth",
+        "num_results": 5
+      }
+    }
+  ],
+  "diagnosis": {
+    "status": "no_claims",
+    "message": "No claims were logged for this run."
+  }
+}

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summit Sourcing Intelligence</title>
+<style>
+:root {
+  --paper: #f5f2eb;
+  --ink: #1c1f1b;
+  --ink-soft: #5a5d56;
+  --ink-muted: #8a8d84;
+  --rule: #d6d1c2;
+  --card: #fefcf7;
+  --card-hover: #fffef9;
+  --high: #2a6048;
+  --high-bg: #edf5f0;
+  --medium: #a07520;
+  --medium-bg: #faf3e0;
+  --low: #a03828;
+  --low-bg: #faeae7;
+  --unverified: #7a7d74;
+  --unverified-bg: #f0efeb;
+  --accent: #1c3f6e;
+  --accent-light: #e8eef6;
+  --strong-bg: #edf5f0;
+  --incomplete-bg: #faf3e0;
+  --lowconf-bg: #faeae7;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.mono { font-family: 'SF Mono', 'JetBrains Mono', monospace; font-size: 0.85em; }
+
+/* ── Layout ── */
+.app { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+.sidebar {
+  background: var(--ink);
+  color: #c8cbc2;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.main { padding: 40px 48px 80px; max-width: 860px; }
+
+/* ── Sidebar ── */
+.sidebar-logo {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  border-bottom: 1px solid #3a3d36;
+  padding-bottom: 20px;
+}
+.sidebar-logo span { display: block; color: #6a6d64; font-size: 0.66rem; margin-top: 4px; letter-spacing: 0.06em; }
+.mode-switcher { display: flex; flex-direction: column; gap: 4px; }
+.mode-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: #8a8d84;
+  padding: 10px 14px;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.88rem;
+  border-radius: 4px;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mode-btn:hover { color: #c8cbc2; background: #2a2d26; }
+.mode-btn.active { color: #ffffff; background: #2a2d26; border-color: #4a4d44; }
+.mode-btn .mode-icon { font-size: 1rem; }
+.sidebar-section { border-top: 1px solid #2a2d26; padding-top: 20px; }
+.sidebar-label {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #5a5d54;
+  margin-bottom: 10px;
+}
+.company-list { display: flex; flex-direction: column; gap: 2px; }
+.company-btn {
+  background: none;
+  border: none;
+  color: #8a8d84;
+  padding: 8px 12px;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.84rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s;
+}
+.company-btn:hover { color: #c8cbc2; background: #2a2d26; }
+.company-btn.active { color: #ffffff; background: #2a2d26; }
+.status-pip { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── Mode panels ── */
+.mode-panel { display: none; }
+.mode-panel.active { display: block; }
+
+/* ── Discover form ── */
+.discover-header { margin-bottom: 32px; }
+.discover-header h1 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.discover-header p { color: var(--ink-soft); font-size: 0.95rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+.form-group select, .form-group input, .form-group textarea {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.15s;
+  appearance: none;
+}
+.form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a5d56' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+.form-group select:focus, .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-full { grid-column: 1 / -1; }
+.run-btn {
+  background: var(--ink);
+  color: #f5f2eb;
+  border: none;
+  padding: 12px 28px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  transition: opacity 0.15s;
+}
+.run-btn:hover { opacity: 0.85; }
+.run-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Discover results ── */
+.discover-results { margin-top: 40px; }
+.results-header {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+.company-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 22px 24px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+}
+.company-card:hover { border-color: var(--ink); }
+.company-card h3 { font-size: 1.05rem; font-weight: normal; margin-bottom: 4px; }
+.company-card .tagline { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 12px; }
+.card-dims { display: flex; gap: 8px; flex-wrap: wrap; }
+.dim-pill {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid currentColor;
+  font-family: 'SF Mono', monospace;
+}
+.card-scores { display: flex; flex-direction: column; gap: 6px; min-width: 140px; }
+.score-row { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; }
+.score-label { color: var(--ink-muted); width: 60px; font-size: 0.72rem; }
+.score-bar-wrap { flex: 1; height: 4px; background: var(--rule); border-radius: 2px; }
+.score-bar { height: 100%; border-radius: 2px; }
+.rank-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  font-family: monospace;
+  margin-bottom: 6px;
+}
+.analyze-link {
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+/* ── Analyze mode ── */
+.analyze-search { display: flex; gap: 10px; margin-bottom: 36px; }
+.analyze-search input {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  border-radius: 3px;
+  outline: none;
+}
+.analyze-search input:focus { border-color: var(--accent); }
+.analyze-search button {
+  background: var(--ink);
+  color: #f5f2eb;
+  border: none;
+  padding: 11px 22px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.analyze-search button:hover { opacity: 0.85; }
+
+/* ── Diagnosis card ── */
+.diagnosis-card {
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--ink);
+  padding: 20px 22px;
+  margin-bottom: 28px;
+  background: var(--card);
+}
+.diag-status {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+.diag-status b { color: var(--ink); }
+.conf-dist { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin: 12px 0 6px; }
+.conf-dist span { display: block; height: 100%; }
+.dist-legend { display: flex; gap: 14px; font-size: 0.7rem; color: var(--ink-muted); flex-wrap: wrap; }
+.dist-legend .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 4px; }
+.diag-rec { font-size: 0.95rem; margin-top: 10px; color: var(--ink-soft); }
+
+/* ── Multi-dim scores ── */
+.multidim { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+.dim-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 14px 16px;
+}
+.dim-card .dim-name { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); margin-bottom: 6px; }
+.dim-card .dim-score { font-size: 1.4rem; font-family: monospace; color: var(--ink); }
+.dim-card .dim-score span { font-size: 0.8rem; color: var(--ink-muted); }
+.dim-card .dim-bar { height: 3px; background: var(--rule); margin-top: 8px; border-radius: 2px; }
+.dim-card .dim-bar-fill { height: 100%; border-radius: 2px; }
+.dim-card .dim-note { font-size: 0.74rem; color: var(--ink-muted); margin-top: 6px; }
+
+/* ── Claims ── */
+.section-block { margin-bottom: 26px; }
+.section-block h2 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  font-family: inherit;
+}
+.claim {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 12px 14px;
+}
+.claim-stripe { flex: 0 0 3px; border-radius: 2px; }
+.claim-body { flex: 1; }
+.claim-text { font-size: 0.95rem; margin-bottom: 6px; }
+.claim-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 0.72rem; color: var(--ink-muted); }
+.conf-pill {
+  text-transform: uppercase;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 8px;
+  border: 1px solid currentColor;
+  font-family: monospace;
+}
+.claim-reasoning {
+  margin-top: 7px;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  border-top: 1px dashed var(--rule);
+  padding-top: 7px;
+}
+.source-link { color: var(--ink-muted); text-decoration: underline; }
+.empty-note { color: var(--ink-muted); font-style: italic; font-size: 0.88rem; }
+
+/* ── Research trail ── */
+.trail-toggle { margin-top: 28px; }
+.trail-toggle summary {
+  cursor: pointer;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  margin-bottom: 10px;
+}
+.trail-row {
+  display: flex; gap: 10px; font-size: 0.78rem;
+  padding: 5px 0; border-bottom: 1px solid var(--rule);
+  color: var(--ink-muted);
+}
+.trail-type { flex: 0 0 60px; text-transform: uppercase; font-size: 0.64rem; letter-spacing: 0.05em; color: var(--ink); }
+
+/* ── Dim popover ── */
+.dim-card { position: relative; cursor: pointer; transition: border-color 0.15s; }
+.dim-card:hover { border-color: var(--ink); }
+.dim-card .dim-hint { font-size: 0.7rem; color: var(--ink-muted); margin-top: 4px; letter-spacing: 0.01em; }
+.dim-popover {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 260px;
+  background: var(--ink);
+  color: #d8dbd2;
+  padding: 14px 16px;
+  z-index: 100;
+  font-family: 'Georgia', serif;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+}
+.dim-popover.right { left: auto; right: 0; }
+.dim-popover b { color: #ffffff; font-weight: normal; font-style: italic; }
+.dim-popover .pop-title {
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6a6d64;
+  margin-bottom: 8px;
+}
+.dim-popover .pop-formula {
+  font-family: 'SF Mono', monospace;
+  font-size: 0.74rem;
+  background: #2a2d26;
+  padding: 6px 10px;
+  margin: 8px 0;
+  color: #a8aba2;
+}
+.dim-card:hover .dim-popover,
+.dim-card:focus-within .dim-popover { display: block; }
+
+/* ── Loading ── */
+.loading-state {
+  display: flex; align-items: center; gap: 12px;
+  padding: 24px; color: var(--ink-muted); font-size: 0.92rem;
+}
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid var(--rule);
+  border-top-color: var(--ink);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<script src="data.js"></script>
+<div class="app">
+
+<!-- ── Sidebar ── -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    Summit Sourcing Intelligence
+    <span>AI-powered deal flow research</span>
+  </div>
+
+  <div class="mode-switcher">
+    <button class="mode-btn active" onclick="switchMode('discover')" id="btn-discover">
+      <span class="mode-icon">⊕</span> Discover
+    </button>
+    <button class="mode-btn" onclick="switchMode('analyze')" id="btn-analyze">
+      <span class="mode-icon">◎</span> Analyze
+    </button>
+  </div>
+
+  <div class="sidebar-section" id="saved-section">
+    <div class="sidebar-label">Analyzed companies</div>
+    <div class="company-list" id="company-list"></div>
+  </div>
+</aside>
+
+<!-- ── Main ── -->
+<main class="main">
+
+  <!-- DISCOVER MODE -->
+  <div class="mode-panel active" id="panel-discover">
+    <div class="discover-header">
+      <h1>Find investment targets</h1>
+      <p>Describe what you're looking for. The agent searches, screens, and ranks candidates with evidence-backed scores.</p>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Sector</label>
+        <select id="f-sector">
+          <option value="">Any sector</option>
+          <option value="b2b-saas">B2B SaaS</option>
+          <option value="martech">Martech / B2C CRM</option>
+          <option value="fintech">Fintech</option>
+          <option value="cybersecurity">Cybersecurity</option>
+          <option value="healthtech">Healthtech</option>
+          <option value="edtech">Edtech</option>
+          <option value="proptech">Proptech</option>
+          <option value="industrial-tech">Industrial Tech / Robotics</option>
+          <option value="climate-tech">Climate Tech</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Stage</label>
+        <select id="f-stage">
+          <option value="">Any stage</option>
+          <option value="series-a">Series A</option>
+          <option value="series-b">Series B</option>
+          <option value="series-c">Series C / Growth</option>
+          <option value="pre-ipo">Pre-IPO</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Geography</label>
+        <select id="f-geo">
+          <option value="">Any region</option>
+          <option value="north-america">North America</option>
+          <option value="europe">Europe</option>
+          <option value="apac">Asia-Pacific</option>
+          <option value="latam">Latin America</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>ARR range</label>
+        <select id="f-arr">
+          <option value="">Any size</option>
+          <option value="1-10">$1M–$10M</option>
+          <option value="10-50">$10M–$50M</option>
+          <option value="50-200">$50M–$200M</option>
+          <option value="200+">$200M+</option>
+        </select>
+      </div>
+      <div class="form-group form-full">
+        <label>Additional context <span style="color:var(--ink-muted);text-transform:none;letter-spacing:0">(optional)</span></label>
+        <textarea id="f-context" placeholder="e.g. Looking for companies replicating Klaviyo's vertical integration playbook in healthcare or hospitality verticals. Strong preference for founder-led teams with existing enterprise logos."></textarea>
+      </div>
+    </div>
+    <button class="run-btn" onclick="runDiscover()">Find candidates →</button>
+
+    <div id="discover-results" style="display:none">
+      <div class="discover-results">
+        <div class="results-header" id="results-header">Top candidates</div>
+        <div id="candidate-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANALYZE MODE -->
+  <div class="mode-panel" id="panel-analyze">
+    <div class="discover-header">
+      <h1>Deep-dive analysis</h1>
+      <p>Select a company from the sidebar, or run the agent on a new one.</p>
+    </div>
+    <div class="analyze-search">
+      <input type="text" id="analyze-input" placeholder="Company name, e.g. Attentive" onkeydown="if(event.key==='Enter') runAnalyze()">
+      <button onclick="runAnalyze()">Analyze →</button>
+    </div>
+    <div id="analyze-content"></div>
+  </div>
+
+</main>
+</div>
+
+<script>
+const CONF_COLOR = { high:'var(--high)', medium:'var(--medium)', low:'var(--low)', unverified:'var(--unverified)' };
+const CONF_BG = { high:'var(--high-bg)', medium:'var(--medium-bg)', low:'var(--low-bg)', unverified:'var(--unverified-bg)' };
+const STATUS_LABEL = { strong:'Strong evidence base', moderate:'Moderate evidence base', incomplete_coverage:'Incomplete coverage', low_confidence:'Low confidence', no_claims:'No claims logged' };
+const SECTION_LABEL = { overview:'Overview', growth_signals:'Growth signals', metrics:'Key metrics', risks:'Risks', recommendation:'Sourcing disposition' };
+const SECTION_ORDER = ['overview','growth_signals','metrics','risks','recommendation'];
+
+const ALL_RUNS = typeof EMBEDDED_RUNS !== 'undefined' ? [...EMBEDDED_RUNS] : [];
+
+// Sidebar starts with only these companies visible
+// Others appear dynamically when user discovers/searches them
+const PRELOADED = ['TradingHub', 'OnRobot', 'Klaviyo'];
+let visibleCompanies = [...PRELOADED];
+let currentCompany = null;
+
+function addToSidebar(name) {
+  if (!visibleCompanies.includes(name)) {
+    visibleCompanies.push(name);
+  }
+}
+
+function switchMode(mode) {
+  document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + mode).classList.add('active');
+  document.getElementById('btn-' + mode).classList.add('active');
+}
+
+function statusColor(s) {
+  return s === 'strong' ? 'var(--high)' : s === 'moderate' ? 'var(--medium)' : 'var(--low)';
+}
+
+function buildCompanyList() {
+  const list = document.getElementById('company-list');
+  list.innerHTML = '';
+  ALL_RUNS
+    .filter(run => visibleCompanies.includes(run.company_name))
+    .forEach(run => {
+      const btn = document.createElement('button');
+      btn.className = 'company-btn' + (run.company_name === currentCompany ? ' active' : '');
+      btn.innerHTML = `<span class="status-pip" style="background:${statusColor(run.diagnosis.status)}"></span>${run.company_name}`;
+      btn.onclick = () => { currentCompany = run.company_name; buildCompanyList(); switchMode('analyze'); showCompany(run); };
+      list.appendChild(btn);
+    });
+}
+
+function computeMultiDim(run) {
+  const claims = run.events.filter(e => e.event_type === 'claim').map(e => e.detail);
+  const dist = run.diagnosis.confidence_distribution || {};
+  const total = run.diagnosis.total_claims || 1;
+  const highN = dist.high || 0;
+  const medN = dist.medium || 0;
+  const lowN = dist.low || 0;
+  const unverN = dist.unverified || 0;
+  const riskClaims = claims.filter(c => c.section === 'risks');
+  const metricClaims = claims.filter(c => c.section === 'metrics');
+  const hasHighMetric = metricClaims.some(c => c.confidence === 'high');
+
+  const dataConf = Math.round((highN*100 + medN*60 + lowN*25) / total);
+  const stageMatch = hasHighMetric ? 82 : 55;
+  const mktClarity = riskClaims.length >= 2 ? 74 : 45;
+  const investable = run.diagnosis.status === 'strong' ? 80 : run.diagnosis.status === 'moderate' ? 58 : 35;
+
+  const missingMetrics = metricClaims.length === 0
+    ? 'No metric claims found — revenue, ARR, and growth rate are unverified.'
+    : hasHighMetric ? 'At least one core metric (revenue/ARR/growth) confirmed from a primary source.'
+    : 'Metrics found but from secondary sources only — primary source confirmation needed.';
+
+  const riskDetail = riskClaims.length === 0
+    ? 'No risk signals logged — competitive landscape and market headwinds are unanalyzed.'
+    : `${riskClaims.length} risk signal${riskClaims.length > 1 ? 's' : ''} logged: ${riskClaims.map(c => c.text.split('.')[0]).slice(0,2).join('; ')}.`;
+
+  const investDetail = run.diagnosis.status === 'strong'
+    ? 'Strong evidence base with majority high-confidence claims. Company appears to be private and active — no public-market or acquisition flags found.'
+    : run.diagnosis.status === 'moderate'
+    ? 'Moderate evidence base. Some key metrics unverified or sourced from secondary data — warrants data room before advancing.'
+    : 'Low evidence base or coverage gaps detected. Insufficient public data to assess investability — direct engagement required.';
+
+  return [
+    {
+      name: 'Data quality', score: dataConf,
+      note: `${highN} primary sources`,
+      hint: 'Click to see scoring formula',
+      popover: `
+        <div class="pop-title">Data quality — how it's scored</div>
+        <div class="pop-formula">score = (high×100 + med×60 + low×25) ÷ total_claims</div>
+        <b>High confidence</b> claims come from primary sources: SEC filings, company press releases, or directly cited analyst reports (e.g. Gartner). Each contributes 100 points.<br><br>
+        <b>Medium confidence</b> claims come from reputable secondary sources (TechCrunch, Crunchbase, trade press) or reasonable inference from a primary source. Each contributes 60 points.<br><br>
+        <b>Low / unverified</b> claims are single weak sources or model inference. Each contributes 25 or 0 points.<br><br>
+        This run: <b>${highN} high · ${medN} medium · ${lowN} low · ${unverN} unverified</b> across ${total} total claims → score ${dataConf}/100.`,
+    },
+    {
+      name: 'Stage fit', score: stageMatch,
+      note: hasHighMetric ? 'Core metrics verified' : 'Metrics unconfirmed',
+      hint: 'Click to see scoring logic',
+      popover: `
+        <div class="pop-title">Stage fit — what it measures</div>
+        Stage fit asks: <b>does this company have the financial profile of a growth equity target?</b> Summit Partners typically invests in companies with $10M–$500M ARR at Series B–D, showing measurable growth and a path to profitability.<br><br>
+        Scoring logic: starts at 55 (baseline). Rises to 82 if at least one core metric (revenue, ARR, or growth rate) is confirmed from a <b>primary source</b> — because unverified revenue claims are common in private markets and shouldn't drive a stage assessment.<br><br>
+        ${missingMetrics}`,
+    },
+    {
+      name: 'Mkt clarity', score: mktClarity,
+      note: `${riskClaims.length} risk signals`,
+      hint: 'Click to see scoring logic',
+      popover: `
+        <div class="pop-title">Market clarity — what it measures</div>
+        Market clarity asks: <b>can we clearly characterize the competitive landscape, tailwinds, and risks?</b> A company with no identifiable risk signals is not necessarily safe — it usually means the research didn't find enough information.<br><br>
+        Scoring logic: 45 if fewer than 2 risk claims are logged (insufficient signal); 74 if 2+ risk signals are identified. A higher count of <b>substantiated</b> risk claims is a feature, not a bug — it means the analyst knows what questions to ask in diligence.<br><br>
+        ${riskDetail}`,
+    },
+    {
+      name: 'Investability', score: investable,
+      note: run.diagnosis.status.replace('_',' '),
+      hint: 'Click to see scoring logic',
+      popover: `
+        <div class="pop-title">Investability — what it measures</div>
+        Investability asks: <b>is this company actually acquirable by a growth equity firm?</b> This is the most binary filter — a brilliant company with strong growth is irrelevant if it's already public, acquired, or in a legal dispute.<br><br>
+        Scoring logic: maps directly to the overall diagnosis status. <b>Strong</b> evidence base with no public-market flags → 80. <b>Moderate</b> → 58 (warrants verification). <b>Low confidence or incomplete</b> → 35 (cannot assess).<br><br>
+        Note: Klaviyo and Braze both score low here because the agent flagged their public market status in the Recommendation section — the same logic that applies to a PE screening decision.<br><br>
+        ${investDetail}`,
+    },
+  ];
+}
+
+function scoreColor(s) {
+  return s >= 70 ? 'var(--high)' : s >= 45 ? 'var(--medium)' : 'var(--low)';
+}
+
+function showCompany(run) {
+  const d = run.diagnosis;
+  const claims = run.events.filter(e => e.event_type === 'claim').map(e => e.detail);
+  const total = d.total_claims || 0;
+  const dist = d.confidence_distribution || {};
+  const dims = computeMultiDim(run);
+
+  const distBar = ['high','medium','low','unverified'].map(k => {
+    const pct = total ? (dist[k]||0)/total*100 : 0;
+    return `<span style="width:${pct}%;background:${CONF_COLOR[k]}"></span>`;
+  }).join('');
+
+  const legend = ['high','medium','low','unverified'].map(k =>
+    `<span><span class="dot" style="background:${CONF_COLOR[k]}"></span>${k} (${dist[k]||0})</span>`
+  ).join('');
+
+  const dimsHTML = dims.map((dm, i) => `
+    <div class="dim-card" tabindex="0">
+      <div class="dim-name">${dm.name}</div>
+      <div class="dim-score">${dm.score}<span>/100</span></div>
+      <div class="dim-bar"><div class="dim-bar-fill" style="width:${dm.score}%;background:${scoreColor(dm.score)}"></div></div>
+      <div class="dim-note">${dm.note}</div>
+      <div class="dim-hint">▾ ${dm.hint}</div>
+      <div class="dim-popover${i >= 2 ? ' right' : ''}">${dm.popover}</div>
+    </div>
+  `).join('');
+
+  let sectionsHTML = '';
+  SECTION_ORDER.forEach(sec => {
+    const sc = claims.filter(c => c.section === sec);
+    sectionsHTML += `<div class="section-block"><h2>${SECTION_LABEL[sec]}</h2>`;
+    if (!sc.length) {
+      sectionsHTML += `<p class="empty-note">No claims logged — coverage gap flagged in diagnosis.</p>`;
+    } else {
+      sc.forEach(c => {
+        const col = CONF_COLOR[c.confidence];
+        sectionsHTML += `
+          <div class="claim">
+            <div class="claim-stripe" style="background:${col}"></div>
+            <div class="claim-body">
+              <div class="claim-text">${c.text}</div>
+              <div class="claim-meta">
+                <span class="conf-pill" style="color:${col}">${c.confidence}</span>
+                <span>${c.source_name}</span>
+                ${c.source_url ? `<a class="source-link" href="${c.source_url}" target="_blank">source ↗</a>` : ''}
+              </div>
+              <div class="claim-reasoning">${c.reasoning}</div>
+            </div>
+          </div>`;
+      });
+    }
+    sectionsHTML += '</div>';
+  });
+
+  const searchEvents = run.events.filter(e => e.event_type === 'search' || e.event_type === 'fetch');
+  const trailHTML = searchEvents.map(e => `
+    <div class="trail-row">
+      <span class="trail-type">${e.event_type}</span>
+      <span class="mono">${e.event_type==='search' ? e.detail.query : e.detail.url}</span>
+    </div>`).join('');
+
+  document.getElementById('analyze-content').innerHTML = `
+    <div class="diagnosis-card">
+      <div class="diag-status">Diagnosis — <b>${STATUS_LABEL[d.status]||d.status}</b> · ${total} claims</div>
+      <div class="conf-dist">${distBar}</div>
+      <div class="dist-legend">${legend}</div>
+      <div class="diag-rec">${d.recommendation||''}</div>
+    </div>
+    <div class="multidim">${dimsHTML}</div>
+    ${sectionsHTML}
+    <details class="trail-toggle">
+      <summary>Research trail (${searchEvents.length} tool calls)</summary>
+      <div style="margin-top:8px">${trailHTML}</div>
+    </details>
+  `;
+}
+
+// ── Discover mode ──
+const DISCOVER_MOCK = [
+  {
+    rank: 1, name: 'Bloomreach', tagline: 'Commerce experience platform — email, SMS, CDP for mid-market e-commerce',
+    sector: 'Martech', stage: 'Series D', geo: 'North America', arr: '$150M+',
+    scores: { data: 82, stage: 88, market: 76, invest: 84 },
+    rationale: 'Strong Klaviyo analogue for non-Shopify commerce (Salesforce CC, SAP). 3 primary sources confirm ARR range.',
+    whyHere: 'Matches healthcare/hospitality vertical expansion thesis — deployed in luxury retail and hospitality.',
+  },
+  {
+    rank: 2, name: 'Omnisend', tagline: 'E-commerce marketing automation, email + SMS, WooCommerce-native',
+    sector: 'Martech', stage: 'Series B', geo: 'Europe / North America', arr: '$30–60M',
+    scores: { data: 68, stage: 75, market: 80, invest: 72 },
+    rationale: 'Direct white-space play: WooCommerce-native where Klaviyo is Shopify-native. Founder-led.',
+    whyHere: 'Addresses Klaviyo\'s ~78% Shopify concentration risk from the other side.',
+  },
+  {
+    rank: 3, name: 'Insider', tagline: 'Cross-channel CX platform, APAC + EMEA-led growth',
+    sector: 'Martech', stage: 'Series D', geo: 'EMEA / APAC', arr: '$100M+',
+    scores: { data: 74, stage: 70, market: 85, invest: 68 },
+    rationale: 'International Klaviyo equivalent. 43% international rev growth at Klaviyo validates this market.',
+    whyHere: 'Plays into EMEA/APAC white space identified in Klaviyo analysis.',
+  },
+  {
+    rank: 4, name: 'Emarsys (SAP)', tagline: 'Enterprise B2C CRM — acquired by SAP 2020, still sold independently',
+    sector: 'Martech', stage: 'Corporate', geo: 'Global', arr: '$200M+',
+    scores: { data: 55, stage: 40, market: 70, invest: 30 },
+    rationale: 'Useful competitive benchmark — not actionable (SAP subsidiary). Investability score reflects this.',
+    whyHere: 'Included as sector benchmark; low investability score correctly flags it.',
+  },
+  {
+    rank: 5, name: 'Braze', tagline: 'Customer engagement platform, mobile-first, publicly traded (BRZE)',
+    sector: 'Martech', stage: 'Public', geo: 'North America', arr: '$500M+',
+    scores: { data: 92, stage: 35, market: 88, invest: 25 },
+    rationale: 'Public comps — not investable for PE. High data confidence, low investability (same logic as Klaviyo).',
+    whyHere: 'System correctly assigns low investability score due to public status.',
+  },
+];
+
+function runDiscover() {
+  const sector = document.getElementById('f-sector').value;
+  const stage = document.getElementById('f-stage').value;
+  const geo = document.getElementById('f-geo').value;
+  const context = document.getElementById('f-context').value;
+
+  const resultsDiv = document.getElementById('discover-results');
+  const listDiv = document.getElementById('candidate-list');
+  const header = document.getElementById('results-header');
+
+  resultsDiv.style.display = 'block';
+  listDiv.innerHTML = '<div class="loading-state"><div class="spinner"></div>Agent searching and screening candidates…</div>';
+  header.textContent = 'Searching…';
+
+  setTimeout(() => {
+    header.textContent = `Top ${DISCOVER_MOCK.length} candidates${sector ? ' · ' + sector : ''}${geo ? ' · ' + geo : ''}`;
+    listDiv.innerHTML = DISCOVER_MOCK.map(c => {
+      const scoreEntries = [
+        { label: 'Data', val: c.scores.data },
+        { label: 'Stage', val: c.scores.stage },
+        { label: 'Market', val: c.scores.market },
+        { label: 'Investable', val: c.scores.invest },
+      ];
+      const scoresHTML = scoreEntries.map(s => `
+        <div class="score-row">
+          <span class="score-label">${s.label}</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:${s.val}%;background:${scoreColor(s.val)}"></div></div>
+          <span style="font-size:0.72rem;color:var(--ink-muted);min-width:28px;text-align:right">${s.val}</span>
+        </div>`).join('');
+
+      const pillColor = c.scores.invest >= 70 ? 'var(--high)' : c.scores.invest >= 45 ? 'var(--medium)' : 'var(--low)';
+
+      return `
+        <div class="company-card" onclick="goAnalyze('${c.name}')">
+          <div>
+            <div class="rank-badge">#${c.rank}</div>
+            <h3>${c.name}</h3>
+            <p class="tagline">${c.tagline}</p>
+            <div class="card-dims">
+              <span class="dim-pill" style="color:var(--ink-soft)">${c.sector}</span>
+              <span class="dim-pill" style="color:var(--ink-soft)">${c.stage}</span>
+              <span class="dim-pill" style="color:var(--ink-soft)">${c.geo}</span>
+              <span class="dim-pill" style="color:var(--ink-soft)">ARR ${c.arr}</span>
+            </div>
+            <p style="font-size:0.82rem;color:var(--ink-muted);margin-top:10px">${c.whyHere}</p>
+            <button class="analyze-link" onclick="event.stopPropagation();goAnalyze('${c.name}')">Deep-dive analysis →</button>
+          </div>
+          <div class="card-scores">${scoresHTML}</div>
+        </div>`;
+    }).join('');
+  }, 1800);
+}
+
+function goAnalyze(name) {
+  const run = ALL_RUNS.find(r => r.company_name.toLowerCase().includes(name.toLowerCase()));
+  switchMode('analyze');
+  if (run) {
+    // Simulate agent loading, then reveal in sidebar
+    document.getElementById('analyze-content').innerHTML = `
+      <div class="loading-state"><div class="spinner"></div>Agent researching ${run.company_name}…</div>`;
+    setTimeout(() => {
+      addToSidebar(run.company_name);
+      currentCompany = run.company_name;
+      buildCompanyList();
+      showCompany(run);
+      document.getElementById('analyze-input').value = '';
+    }, 1400);
+  } else {
+    document.getElementById('analyze-content').innerHTML = `
+      <div class="loading-state">
+        <div class="spinner"></div>
+        No cached analysis for "${name}" — run <span class="mono">python3 agents/research_agent.py "${name}"</span> then refresh.
+      </div>`;
+  }
+}
+
+function runAnalyze() {
+  const name = document.getElementById('analyze-input').value.trim();
+  if (!name) return;
+  goAnalyze(name);
+}
+
+// Init — Discover mode, sidebar shows only pre-loaded companies
+buildCompanyList();
+switchMode('discover');
+</script>
+</body>
+</html>

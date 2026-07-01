@@ -1,0 +1,435 @@
+{
+  "company_name": "Bloomreach",
+  "events": [
+    {
+      "event_id": "bloomreach_001",
+      "timestamp": 1782875196.756905,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach company overview martech 2024",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_002",
+      "timestamp": 1782875197.576065,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach funding rounds valuation",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_003",
+      "timestamp": 1782875201.826405,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach customers revenue ARR growth 2024 2025",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_004",
+      "timestamp": 1782875202.898767,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach competitors risks martech CDP personalization",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_005",
+      "timestamp": 1782875205.699782,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "success": true
+      }
+    },
+    {
+      "event_id": "bloomreach_006",
+      "timestamp": 1782875206.664017,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach Loomi AI product launch agentic 2025",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_007",
+      "timestamp": 1782875210.126123,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach valuation markdown 2023 2024 Prime Unicorn",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_008",
+      "timestamp": 1782875210.987859,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach headcount employees 2024 2025 hiring",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_009",
+      "timestamp": 1782875219.354435,
+      "event_type": "fetch",
+      "detail": {
+        "url": "https://www.primeunicornindex.com/bloomreachs-valuation-withers-below-1b",
+        "success": false
+      }
+    },
+    {
+      "event_id": "bloomreach_010",
+      "timestamp": 1782875220.204467,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach IPO plans 2025 exit strategy",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_011",
+      "timestamp": 1782875223.6862311,
+      "event_type": "search",
+      "detail": {
+        "query": "Bloomreach Gartner Magic Quadrant 2025 2026",
+        "num_results": 5
+      }
+    },
+    {
+      "event_id": "bloomreach_012",
+      "timestamp": 1782875236.187318,
+      "event_type": "claim",
+      "detail": {
+        "section": "overview",
+        "text": "Bloomreach is a Mountain View, CA-based B2B SaaS company that operates an AI-powered commerce personalization platform. Its core suite covers three pillars: Discovery (site search & product merchandising), Engagement (CDP + omnichannel marketing automation), and Content (headless CMS).",
+        "confidence": "high",
+        "source_name": "Bloomreach company website / press releases",
+        "source_url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "reasoning": "Directly sourced from the company's own press releases and product pages."
+      }
+    },
+    {
+      "event_id": "bloomreach_013",
+      "timestamp": 1782875236.188399,
+      "event_type": "claim",
+      "detail": {
+        "section": "overview",
+        "text": "Bloomreach's proprietary AI layer is called Loomi AI, described as an agentic platform that unifies customer data, predictive models, and channel activation to personalize experiences across email, search, ads, and mobile.",
+        "confidence": "high",
+        "source_name": "Bloomreach product page",
+        "source_url": "https://www.bloomreach.com/en/products/loomi-ai",
+        "reasoning": "Pulled directly from the company's own Loomi AI product page."
+      }
+    },
+    {
+      "event_id": "bloomreach_014",
+      "timestamp": 1782875236.188423,
+      "event_type": "claim",
+      "detail": {
+        "section": "overview",
+        "text": "Bloomreach was co-founded by Raj De Datta, who remains CEO, and the company is headquartered in Mountain View, CA.",
+        "confidence": "high",
+        "source_name": "Bloomreach press release (BusinessWire)",
+        "source_url": "https://www.businesswire.com/news/home/20260224592115/en/Bloomreach-Surpasses-%24260-Million-in-Annual-Recurring-Revenue-Fueled-by-Adoption-of-Loomi-AI-Agentic-Platform",
+        "reasoning": "Named directly in official company press releases."
+      }
+    },
+    {
+      "event_id": "bloomreach_015",
+      "timestamp": 1782875249.491267,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Bloomreach surpassed $260 million in ARR in 2025 (announced February 24, 2026), and also achieved positive free cash flow and record net new ARR in 2025.",
+        "confidence": "high",
+        "source_name": "Bloomreach official press release",
+        "source_url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "reasoning": "Directly from the company's own press release, a primary source."
+      }
+    },
+    {
+      "event_id": "bloomreach_016",
+      "timestamp": 1782875249.491306,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Bloomreach reported approximately $219.5M in revenue as of October 2024, with approximately 750 customers at that time.",
+        "confidence": "medium",
+        "source_name": "GetLatka",
+        "source_url": "https://getlatka.com/companies/bloomreach",
+        "reasoning": "GetLatka is a reputable secondary aggregator for private SaaS metrics but is not a primary company disclosure."
+      }
+    },
+    {
+      "event_id": "bloomreach_017",
+      "timestamp": 1782875249.491324,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Bloomreach crossed the $200 million revenue threshold in 2024, as confirmed by Axios reporting.",
+        "confidence": "medium",
+        "source_name": "Axios",
+        "source_url": "https://www.axios.com/pro/retail-deals/2024/11/22/bloomreach-revenue-growth-search-ecommerce-shopping",
+        "reasoning": "Reputable secondary press source corroborating the $200M+ revenue figure."
+      }
+    },
+    {
+      "event_id": "bloomreach_018",
+      "timestamp": 1782875249.491337,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Bloomreach approximately doubled its growth rate in 2025, described by CEO Raj De Datta as operating at \"pre-IPO scale.\"",
+        "confidence": "medium",
+        "source_name": "LinkedIn (CEO post)",
+        "source_url": "https://www.linkedin.com/posts/rdedatta_bloomreach-2xed-its-growth-rate-in-2025-activity-7414730596964286464-RucQ",
+        "reasoning": "Statement from company CEO on LinkedIn; a direct but informal primary source; no hard figures disclosed."
+      }
+    },
+    {
+      "event_id": "bloomreach_019",
+      "timestamp": 1782875270.895631,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "In February 2022, Bloomreach raised $175 million in a Series F round led by Goldman Sachs Asset Management, with participation from Bain Capital Ventures and Sixth Street, valuing the company at $2.2 billion \u2014 more than doubling its valuation in one year.",
+        "confidence": "high",
+        "source_name": "Bloomreach press release / PR Newswire",
+        "source_url": "https://www.bloomreach.com/en/news/2022/bloomreach-valuation-soars-to-usd2-2-billion-following-usd175-million-investment-led-by-goldman-sachs-asset-management",
+        "reasoning": "Official company press release on primary fundraise."
+      }
+    },
+    {
+      "event_id": "bloomreach_020",
+      "timestamp": 1782875270.895666,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "Nearly half of all Bloomreach customers now use at least one AI agent or next-generation AI tool; this adoption rate more than doubled in the last twelve months, and the share of customers using four or more agents quadrupled in the same period.",
+        "confidence": "high",
+        "source_name": "Bloomreach official press release",
+        "source_url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "reasoning": "Directly from the company's own primary press release with specific figures."
+      }
+    },
+    {
+      "event_id": "bloomreach_021",
+      "timestamp": 1782875270.895683,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "Bloomreach's conversational shopping agent saw a 113% surge in shopper engagement during the 2025 holiday season.",
+        "confidence": "high",
+        "source_name": "Bloomreach official press release",
+        "source_url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "reasoning": "Specific metric stated directly in an official company press release."
+      }
+    },
+    {
+      "event_id": "bloomreach_022",
+      "timestamp": 1782875270.8956952,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "Bloomreach added notable new brand customers in 2025 including ThirdLove, ALDO, Halfords, and SPANX, and expanded relationships with existing customers such as Next and Desigual.",
+        "confidence": "high",
+        "source_name": "Bloomreach official press release",
+        "source_url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "reasoning": "Brand names listed directly in an official company press release."
+      }
+    },
+    {
+      "event_id": "bloomreach_023",
+      "timestamp": 1782875270.8957062,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "Bloomreach was named a Leader in the 2025 Gartner Magic Quadrant for Personalization Engines (February 2025) and a Leader in the 2025 Magic Quadrant for Search and Product Discovery (two years in a row), as well as a Visionary in the 2025 Gartner Magic Quadrant for Multichannel Marketing Hubs.",
+        "confidence": "high",
+        "source_name": "Bloomreach press releases / Gartner",
+        "source_url": "https://www.bloomreach.com/en/news/2025/bloomreach-named-a-leader-in-the-gartner-magic-quadrant-for-personalization-engines",
+        "reasoning": "Named in official company press releases citing Gartner's third-party research reports."
+      }
+    },
+    {
+      "event_id": "bloomreach_024",
+      "timestamp": 1782875270.8957171,
+      "event_type": "claim",
+      "detail": {
+        "section": "growth_signals",
+        "text": "Bloomreach's marketing agents are delivering a reported 2x increase in value per email delivered for customers such as Sideshow.",
+        "confidence": "medium",
+        "source_name": "Bloomreach official press release",
+        "source_url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "reasoning": "Stated in official press release but as a customer case study claim \u2014 likely self-selected best-case example rather than an average."
+      }
+    },
+    {
+      "event_id": "bloomreach_025",
+      "timestamp": 1782875292.604241,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "Secondary market transactions in September 2024 implied a Bloomreach valuation as low as ~$484 million per the Prime Unicorn Index, a steep markdown from the $2.2 billion Series F price set in February 2022. No new primary funding round has been announced since 2022.",
+        "confidence": "medium",
+        "source_name": "Prime Unicorn Index / X (Twitter)",
+        "source_url": "https://x.com/PrimeUnicornIDX/status/1832146458465739131",
+        "reasoning": "Secondary market trades are a directional signal but not a definitive valuation; Prime Unicorn Index is a reputable tracker but methodology involves pricing off thin secondary trades."
+      }
+    },
+    {
+      "event_id": "bloomreach_026",
+      "timestamp": 1782875292.604277,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "Bloomreach faces competition from a broad set of martech players including Salesforce Marketing Cloud (Agentforce), Braze, Insider, Algolia, Constructor, Dynamic Yield (Mastercard-backed), and Monetate in various parts of its platform stack.",
+        "confidence": "medium",
+        "source_name": "G2 / Maestra / Spike AI competitor analyses",
+        "source_url": "https://www.g2.com/products/bloomreach-bloomreach/competitors/alternatives",
+        "reasoning": "Sourced from multiple reputable third-party review and analysis sites, cross-corroborated."
+      }
+    },
+    {
+      "event_id": "bloomreach_027",
+      "timestamp": 1782875292.6042938,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "Customer-side friction points cited by users and analysts include merchandiser dependency on engineering teams, unpredictable pricing, and paying for bundled modules not in use \u2014 factors that drive churn consideration to competitors.",
+        "confidence": "low",
+        "source_name": "Spike AI / Maestra competitor analysis",
+        "source_url": "https://getspike.ai/blog/bloomreach-competitors",
+        "reasoning": "Sourced from a single competitor-adjacent analysis site, not independently verified through customer surveys or G2/Gartner user reviews."
+      }
+    },
+    {
+      "event_id": "bloomreach_028",
+      "timestamp": 1782875292.604306,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "Bloomreach has not raised a new primary equity round since February 2022 (over three years), raising questions about the path to liquidity \u2014 IPO market conditions in 2025 remain challenging, and no public IPO filing has been announced.",
+        "confidence": "medium",
+        "source_name": "Tracxn funding history / EquityZen / Crunchbase",
+        "source_url": "https://tracxn.com/d/companies/bloomreach/__LHBw05jfqQlnvoTT_Dpsd4lKmDkI-BG7_kYr_PXV3Jk/funding-and-investors",
+        "reasoning": "No primary round found since 2022 across multiple funding trackers; IPO silence confirmed by absence of any S-1 filing or press release."
+      }
+    },
+    {
+      "event_id": "bloomreach_029",
+      "timestamp": 1782875292.604317,
+      "event_type": "claim",
+      "detail": {
+        "section": "risks",
+        "text": "The broader martech landscape is undergoing rapid AI-driven commoditization, with large platform vendors (Salesforce, Adobe, Microsoft) embedding AI personalization natively into existing enterprise relationships, compressing the addressable whitespace for independent vendors.",
+        "confidence": "low",
+        "source_name": "Analyst synthesis / competitor landscape",
+        "source_url": "",
+        "reasoning": "Reasonable market inference based on competitive set, but not sourced from a specific primary or secondary report."
+      }
+    },
+    {
+      "event_id": "bloomreach_030",
+      "timestamp": 1782875301.92266,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Bloomreach has approximately 900 employees globally, with engineering hubs in Czech Republic, Slovakia, and India in addition to its US headquarters.",
+        "confidence": "low",
+        "source_name": "TrueUp / job board listings",
+        "source_url": "https://www.trueup.io/co/bloomreach",
+        "reasoning": "TrueUp is an aggregator; figure not confirmed by company disclosure; Indeed shows 201\u2013500, suggesting figures across sources diverge."
+      }
+    },
+    {
+      "event_id": "bloomreach_031",
+      "timestamp": 1782875301.922697,
+      "event_type": "claim",
+      "detail": {
+        "section": "metrics",
+        "text": "Bloomreach's last disclosed primary valuation was $2.2 billion at the February 2022 Series F. As of research date, no updated primary-round valuation exists; secondary market trades implied a valuation as low as ~$484 million in late 2024, though this may not reflect intrinsic enterprise value.",
+        "confidence": "medium",
+        "source_name": "Bloomreach press release (2022) + Prime Unicorn Index (2024)",
+        "source_url": "https://www.bloomreach.com/en/news/2022/bloomreach-valuation-soars-to-usd2-2-billion-following-usd175-million-investment-led-by-goldman-sachs-asset-management",
+        "reasoning": "Primary valuation from official press release; secondary-market markdown from reputable index tracker, but secondary trades carry uncertainty."
+      }
+    },
+    {
+      "event_id": "bloomreach_032",
+      "timestamp": 1782875311.4452212,
+      "event_type": "claim",
+      "detail": {
+        "section": "recommendation",
+        "text": "Bloomreach has demonstrated durable revenue growth (crossing $200M ARR in 2024 and $260M ARR in 2025) while reaching positive free cash flow, suggesting improving unit economics and a credible path to profitability without requiring another primary raise.",
+        "confidence": "high",
+        "source_name": "Bloomreach official press release",
+        "source_url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "reasoning": "Both ARR milestones and positive FCF are stated directly in an official company press release."
+      }
+    },
+    {
+      "event_id": "bloomreach_033",
+      "timestamp": 1782875311.445257,
+      "event_type": "claim",
+      "detail": {
+        "section": "recommendation",
+        "text": "The key diligence risk for a growth equity investor is the valuation reset: the 2022 Series F at $2.2B implies a ~8.5x ARR multiple on current $260M ARR; secondary market trades suggest the market has since repriced far lower (~1.9x ARR), creating both opportunity and uncertainty around entry price and exit multiple expansion.",
+        "confidence": "medium",
+        "source_name": "Analyst calculation based on Bloomreach press release + Prime Unicorn Index",
+        "source_url": "https://www.bloomreach.com/en/news/2026/bloomreach-surpasses-260-million-arr",
+        "reasoning": "ARR and primary valuation are from primary sources; multiple math is a straightforward derivation; secondary-market implied multiple is from Prime Unicorn Index \u2014 reasonable but not definitive."
+      }
+    }
+  ],
+  "diagnosis": {
+    "status": "moderate",
+    "total_claims": 22,
+    "confidence_distribution": {
+      "high": 10,
+      "medium": 9,
+      "low": 3,
+      "unverified": 0
+    },
+    "section_coverage": {
+      "overview": 3,
+      "metrics": 6,
+      "growth_signals": 6,
+      "risks": 5,
+      "recommendation": 2
+    },
+    "missing_sections": [],
+    "weak_claims": [
+      {
+        "section": "risks",
+        "text": "Customer-side friction points cited by users and analysts include merchandiser dependency on engineering teams, unpredictable pricing, and paying for bundled modules not in use \u2014 factors that drive churn consideration to competitors.",
+        "confidence": "low",
+        "source_name": "Spike AI / Maestra competitor analysis",
+        "source_url": "https://getspike.ai/blog/bloomreach-competitors",
+        "reasoning": "Sourced from a single competitor-adjacent analysis site, not independently verified through customer surveys or G2/Gartner user reviews."
+      },
+      {
+        "section": "risks",
+        "text": "The broader martech landscape is undergoing rapid AI-driven commoditization, with large platform vendors (Salesforce, Adobe, Microsoft) embedding AI personalization natively into existing enterprise relationships, compressing the addressable whitespace for independent vendors.",
+        "confidence": "low",
+        "source_name": "Analyst synthesis / competitor landscape",
+        "source_url": "",
+        "reasoning": "Reasonable market inference based on competitive set, but not sourced from a specific primary or secondary report."
+      },
+      {
+        "section": "metrics",
+        "text": "Bloomreach has approximately 900 employees globally, with engineering hubs in Czech Republic, Slovakia, and India in addition to its US headquarters.",
+        "confidence": "low",
+        "source_name": "TrueUp / job board listings",
+        "source_url": "https://www.trueup.io/co/bloomreach",
+        "reasoning": "TrueUp is an aggregator; figure not confirmed by company disclosure; Indeed shows 201\u2013500, suggesting figures across sources diverge."
+      }
+    ],
+    "recommendation": "Reasonable evidence base, but several claims rely on secondary sources. Spot-check before circulating."
+  }
+}
