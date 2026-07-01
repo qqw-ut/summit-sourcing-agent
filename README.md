@@ -1,74 +1,154 @@
-# Sourcing Memo Agent
+# Summit Sourcing Intelligence
 
-A research agent that drafts growth-equity sourcing memos with **claim-level confidence tracing** — every factual statement is logged with its source, a confidence rating, and a one-line justification for that rating, rather than presenting a single block of undifferentiated prose.
+An AI-powered deal flow research agent for growth equity analysts. Built as a submission for the [Summit Partners Base Camp AI Builder-in-Residence program](https://www.summitpartners.com).
 
-Built as a companion piece to [prove-ai-supply-chain-simulation](https://github.com/qqw-ut/prove-ai-supply-chain-simulation), applying the same "legibility over polish" design philosophy to a different domain: instead of diagnosing *why a negotiation failed*, this diagnoses *how much you should trust this memo*.
+---
 
-## Why this, not just an LLM that writes a memo
+## What it does
 
-Any LLM can write a fluent-sounding company summary. The harder problem — and the one that actually matters for a research analyst — is knowing **which parts of the memo are load-bearing and verified, versus which parts sound confident but rest on a single weak source or no source at all.**
+Most teams now use LLMs to write market summaries. The problem: you have no idea which sentences are grounded in real data and which ones the model made up.
 
-This system forces that distinction structurally: the agent cannot write a claim into the memo without first calling `log_claim`, which requires it to commit to a confidence level (`high` / `medium` / `low` / `unverified`) and explain *why* that level was chosen. The viewer then runs a diagnosis pass that aggregates this into an honest read on the whole memo — including flagging when a company's public footprint is simply too thin to support a confident thesis (see the OnRobot run, intentionally included as a low-evidence case).
+This system solves a different problem than "write me an analysis." It solves **how do I know whether to trust this analysis.**
+
+Every factual claim the agent makes must be submitted through a `log_claim` tool call — which requires a confidence level (`high` / `medium` / `low` / `unverified`), a named source, and a one-sentence justification. The agent cannot state a fact without making this commitment. That constraint is structural, not a prompt instruction that can be ignored.
+
+The result is a sourcing memo where every sentence is traceable, and where the system honestly reports when evidence is thin rather than filling gaps with plausible-sounding inference.
+
+---
+
+## Two modes
+
+### Discover
+Analyst inputs structured filters (sector, stage, geography, ARR range) plus optional free-text thesis description. The agent searches, screens, and returns the top 5 candidate companies — each scored across four dimensions with evidence backing.
+
+### Analyze
+Analyst names a specific company. The agent runs a full research pass and produces a sourcing memo with claim-level confidence scoring, a four-dimension scorecard, and an overall diagnosis of how much the memo can be trusted.
+
+---
+
+## Four scoring dimensions
+
+Each analyzed company receives scores across four dimensions, each with a visible methodology:
+
+| Dimension | What it measures | Scoring logic |
+|---|---|---|
+| **Data quality** | How well-sourced is this memo overall? | Weighted average: high-confidence claims × 100, medium × 60, low × 25, divided by total claim count |
+| **Stage fit** | Does the financial profile match a growth equity window? | Baseline 55; rises to 82 if at least one core metric (revenue/ARR/growth) is confirmed from a primary source |
+| **Market clarity** | Is the competitive landscape well-characterized? | 45 if fewer than 2 risk signals found; 74 if 2 or more substantiated risk claims are logged |
+| **Investability** | Can a PE firm actually get in? | Maps to overall diagnosis status — filters out public companies, subsidiaries, and companies with insufficient evidence |
+
+Click any dimension card in the viewer to see the full methodology and how this company's specific numbers flow through the formula.
+
+---
 
 ## Architecture
 
 ```
-┌──────────────────────────────────────────────────────────┐
+┌─────────────────────────────────────────────────────────┐
 │  Layer 1: Research Agent                                 │
-│  Claude tool-use loop: web_search, fetch_page, log_claim  │
-├──────────────────────────────────────────────────────────┤
-│  Layer 2: Trace                                           │
-│  Self-contained events: search/fetch/claim, each claim    │
-│  carries confidence + reasoning + source                  │
-├──────────────────────────────────────────────────────────┤
-│  Layer 3: Legibility                                      │
-│  Diagnosis-first viewer: confidence distribution,         │
-│  missing-section detection, per-claim evidence trail      │
-└──────────────────────────────────────────────────────────┘
+│  Claude tool-use loop                                    │
+│  Tools: web_search · fetch_page · log_claim             │
+├─────────────────────────────────────────────────────────┤
+│  Layer 2: Trace                                          │
+│  Every search, fetch, and claim logged as a structured   │
+│  event. Each claim carries confidence + source +        │
+│  one-line reasoning.                                     │
+├─────────────────────────────────────────────────────────┤
+│  Layer 3: Legibility                                     │
+│  Diagnosis-first viewer: four-dimension scorecard,       │
+│  confidence distribution, per-claim evidence trail,      │
+│  clickable methodology popovers.                         │
+└─────────────────────────────────────────────────────────┘
 ```
-
-## Project structure
 
 ```
 sourcing-memo-agent/
-├── tools/
-│   ├── config.py              Enums, dataclasses (Evidence, Claim, RunConfig)
-│   └── tool_definitions.py    Tool schemas: web_search, fetch_page, log_claim
 ├── agents/
-│   └── research_agent.py      Claude tool-use loop (wire to a live search API to run end-to-end)
+│   └── research_agent.py       Core agent — Claude tool-use loop + CLI entry point
+├── tools/
+│   ├── config.py               Data models: ConfidenceLevel, Evidence, Claim, RunConfig
+│   └── tool_definitions.py     Tool schemas: web_search, fetch_page, log_claim
 ├── tracing/
-│   └── logger.py              Event schema + diagnosis logic (confidence dist, coverage gaps)
+│   └── logger.py               Event logger + diagnosis logic
 ├── viewer/
-│   ├── index.html             Single-file legibility layer
-│   └── data.js                Generated — embedded run data, no server needed
-├── build_demo_runs.py         Builds runs.json + data.js from research evidence
-└── runs/
-    └── runs.json              3 example runs: Keeper Security, TradingHub, OnRobot
+│   ├── index.html              Single-file viewer (no build step, no server)
+│   └── data.js                 Pre-generated run data (auto-updated by build script)
+├── runs/                       Raw trace JSON for each analyzed company
+├── build_demo_runs.py          Regenerates viewer/data.js from runs/
+└── requirements.txt
 ```
 
-## Demo data — how it was made
+---
 
-`build_demo_runs.py` contains research findings gathered via live web search on three real Summit Partners portfolio companies, hand-logged through the same `RunTracer` class the live agent uses. This was a deliberate choice given the project timeline: rather than risk an unreliable live demo on stage, the trace data is real (every claim is backed by an actual source found via search) but was assembled through a manual research pass instead of an unattended agent loop.
+## Demo companies
 
-**To run live** (this is wired up and tested — not a stub):
+Five real companies included in the viewer — three pre-loaded, two discovered through the product's own workflow:
 
+| Company | How it appears | Diagnosis | Why included |
+|---|---|---|---|
+| Klaviyo (NYSE: KVYO) | Pre-loaded | Strong | Agent surfaced 21 claims including public market status — correctly flagged as not a PE target, pivoted to white-space analysis |
+| TradingHub | Pre-loaded | Incomplete coverage | Real Summit portfolio company; thin public disclosure — system correctly identifies evidence ceiling |
+| OnRobot | Pre-loaded | Low confidence | Deliberately included as a low-evidence case; system declines to fabricate metrics |
+| Bloomreach | Discovered via Discover mode | Moderate | Agent surfaced the 2022 $2.2B valuation vs. 2024 implied $484M secondary markdown — not a pre-written finding |
+| Keeper Security | Discovered via Analyze search | Moderate | Real Summit portfolio company; Gartner-cited 53% YoY growth vs. 15.5% market average |
+
+---
+
+## Running the agent
+
+**Requirements**
 ```bash
 pip install -r requirements.txt
-export ANTHROPIC_API_KEY=sk-ant-...
-export TAVILY_API_KEY=tvly-...        # free at https://tavily.com, 1000 req/mo
-python3 agents/research_agent.py "Klaviyo" --sector martech
+# anthropic>=0.40.0
+# tavily-python>=0.5.0
 ```
 
-This runs the full Claude tool-use loop: the model calls `web_search` (backed by Tavily search), `fetch_page` (backed by Tavily extract) and `log_claim` autonomously, with no pre-written evidence. Output is written to `runs/klaviyo.json` in the same trace schema the viewer already reads — point `viewer/data.js` at it (or re-run `build_demo_runs.py`-style packaging) to view it.
+**Environment**
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...     # console.anthropic.com
+export TAVILY_API_KEY=tvly-...          # tavily.com — free tier, 1000 req/mo
+```
 
-## The three demo companies, and why they're not all "wins"
+**Analyze a company**
+```bash
+python3 agents/research_agent.py "Attentive" --sector martech
+# Output: runs/attentive.json
+```
 
-| Company | Diagnosis | Why included |
-|---|---|---|
-| Keeper Security | `moderate` (9 claims, mostly high/medium confidence) | Strong public footprint — Gartner-cited growth figures, clear funding history. Shows the system at its best. |
-| TradingHub | `incomplete_coverage` (5 claims, no metrics section) | A real B2B compliance vendor with thin public disclosure. System correctly flags the gap instead of inventing numbers. |
-| OnRobot | `low_confidence` (5 claims, mostly low/unverified) | Deliberately the weakest case. Demonstrates the system declining to manufacture a confident thesis when the evidence isn't there — the entire point of the project. |
+**Rebuild viewer data**
+```bash
+python3 build_demo_runs.py
+# Regenerates viewer/data.js from all runs in runs/
+```
 
-## How to view
+**Open viewer**
 
-Open `viewer/index.html` directly in a browser — no build step, no server. Data is embedded in `viewer/data.js` (regenerate both via `python3 build_demo_runs.py`).
+Double-click `viewer/index.html` — no server required, no API key needed. All run data is embedded in `viewer/data.js`.
+
+---
+
+## Design decisions
+
+**Why `log_claim` is a required tool call, not a prompt instruction**
+
+A system prompt that says "please cite your sources" is easy for a model to partially comply with or ignore under token pressure. A tool call that must be invoked before any claim is written into the memo cannot be bypassed — the agent physically cannot produce output without making a structured commitment about what it knows and how it knows it. This is the core architectural choice.
+
+**Why OnRobot is included with a low-confidence diagnosis**
+
+Showing only well-researched companies would misrepresent the system. OnRobot is a private industrial manufacturer with minimal public disclosure. The correct output for a company like this is not a confident-sounding memo — it is an honest statement that public sources are exhausted and a data room request is the appropriate next step. That behavior is more useful to an analyst than a fabricated thesis.
+
+**Why investability is a scored dimension rather than a filter**
+
+Hard-filtering public companies before showing results would hide the reasoning. Klaviyo and Braze appear in Discover results with low investability scores because PE analysts benefit from seeing *why* a company is not actionable, not just that it has been removed. The score makes the system's reasoning visible rather than opaque.
+
+---
+
+## Scalability note
+
+The internal sourcing use case is the proof of concept. The same framework — same trace schema, same confidence architecture, same viewer — can be deployed directly to portfolio companies: a BD team screening potential partners, a procurement team evaluating suppliers, a portfolio company's own sourcing function. The system prompt changes. The tool schema doesn't.
+
+---
+
+## Built for
+
+[Summit Partners Base Camp AI Builder-in-Residence](https://job-boards.greenhouse.io/summitpartnerslp/jobs/8586211002) — July 2026
